@@ -37,8 +37,6 @@ public class LinkedList<E> {
             this.first = new Node(item, n);
             size++;
         }
-
-        size++;
     }
 
     public void addLast(E item) {
