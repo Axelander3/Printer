@@ -6,27 +6,48 @@ package PrinterQueue;
  */
 public class Main {
     public static void main(String[] args) {
-        Printer printer = new Printer();
+        Printer printer = new Printer(); // Skapar en ny skrivare
 
-        printer.enqueue("test");
 
-        System.out.println(printer.printQueue());
+        try {
+            System.out.println(printer.dequeue()); // försöker att dequeuea när det inte finns något
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-        printer.enqueue("hello");
+        System.out.println(printer.printQueue()); //Printer ut kön
 
-        System.out.println(printer.printQueue());
+        printer.enqueue("hello");//lägger till hello i kön
 
-        printer.enqueue("paper");
+        System.out.println(printer.printQueue()); // printar ut kön
 
-        System.out.println(printer.printQueue());
+        printer.enqueue("paper"); // lägger till paper i kön
 
-        System.out.println(printer.size());
+        System.out.println(printer.printQueue());// printar ut kön
 
-        System.out.println(printer.dequeue());
+        System.out.println(printer.size()); // printar ut hur många det är kön
 
-        System.out.println(printer.printQueue());
+        try {//försöker att ta bort den första ur kön.
+            System.out.println(printer.dequeue());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-        System.out.println(printer.size());
+        System.out.println(printer.printQueue());// printar ut kön
+
+        System.out.println(printer.size());// printar ut hur många det är kön
+
+        try {//försöker att ta bort den första ur kön.
+            System.out.println(printer.dequeue());
+        } catch (PrinterQueueEmptyException e) {
+            e.printStackTrace();
+        }
+        System.out.println(printer.printQueue());// printar ut kön
+
+        System.out.println(printer.size()); // printe rhur många det är i kön
+
+
     }
+
 
 }

@@ -52,10 +52,9 @@ public class LinkedList<E> {
         }
     }
 
-    public void removeFirst() {
+    public void removeFirst() throws PrinterQueueEmptyException{
         if (isEmpty()) {
-            // thorw new exeption
-            return;
+            throw new PrinterQueueEmptyException("You can not remove when its empty!");
         } else {
             if (size() == 1) {
                 this.first = null;
@@ -68,10 +67,9 @@ public class LinkedList<E> {
         }
     }
 
-    public void removeLast() {
+    public void removeLast() throws PrinterQueueEmptyException{
         if (isEmpty()) {
-            // thorw new exeption
-            return;
+            throw new PrinterQueueEmptyException("You can not remove when its empty!");
         } else {
             this.last = null;
             size--;
@@ -91,17 +89,26 @@ public class LinkedList<E> {
     }
     public String toString() {
         String print = "";
-        Node currentNode = first;
-        while(currentNode != null) {
-            print += currentNode.data.toString();
-            currentNode = currentNode.next;
-            if (currentNode != null) {
-                print += " -> ";
+        if (isEmpty()) {
+            return "Printer queue is empty";
+        } else {
+            Node currentNode = first;
+            while (currentNode != null) {
+                print += currentNode.data.toString();
+                currentNode = currentNode.next;
+                if (currentNode != null) {
+                    print += " -> ";
+                }
             }
-        }
+
+            }
         return print;
-    }
-    public String getFirst() {
+        }
+
+    public String getFirst()throws PrinterQueueEmptyException {
+        if (isEmpty()) {
+            throw new PrinterQueueEmptyException("Printer queue is empty");
+        }
         return this.first.data.toString();
     }
 }
